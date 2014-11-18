@@ -8,6 +8,17 @@ class Piece
     @board = board
   end
 
+  def other_piece(position)
+    !@board[position].nil? && @board[position].color == other_color(@color)
+  end
+
+
+  def valid_move?(position)
+    return false unless position[0].between?(0, 7)
+    return false unless position[1].between?(0, 7)
+    return false unless (@board[position].nil? || @board[position].color == other_color(@color))
+    return true
+  end
 
   # update_board method which will deep_dup the current board before checking for moves, etc.
 

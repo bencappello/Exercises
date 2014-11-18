@@ -7,7 +7,10 @@ class SteppingPiece < Piece
   end
 
   def moves
-    move_dirs
+
+    move_dirs.map do |(dx, dy)|
+      [pos[0] + dx, pos[1] + dy]
+    end.select {|position| valid_move?(position)}
   end
 
 end

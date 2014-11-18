@@ -8,6 +8,14 @@ load "board.rb"
 a = Board.new
 bishop1 = a[[0,2]]
 bishop1.pos = [4,4]
-
-
 bishop1.moves
+
+
+load "board.rb"
+a = Board.new
+rook1 = a[[0,3]]
+rook1.pos = [4,4]
+rook1.moves
+
+
+exit

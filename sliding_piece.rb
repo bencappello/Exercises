@@ -33,16 +33,4 @@ class SlidingPiece < Piece
     extended_moves
   end
 
-  def other_piece(position)
-    !@board[position].nil? && @board[position].color == other_color(@color)
-  end
-
-
-  def valid_move?(position)
-    return false unless position[0].between?(0, 7)
-    return false unless position[1].between?(0, 7)
-    return false unless (@board[position].nil? || @board[position].color == other_color(@color))
-    return true
-  end
-
 end
