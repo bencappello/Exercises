@@ -21,11 +21,11 @@ class Board
 
   def set_pawns
     @grid[1].each_with_index do |space, index|
-      @grid[1][index] = Pawn.new(:b, [1, index])
+      @grid[1][index] = Pawn.new(:b, [1, index], @grid)
     end
 
     @grid[6].each_with_index do |space, index|
-      @grid[6][index] = Pawn.new(:w, [6, index])
+      @grid[6][index] = Pawn.new(:w, [6, index], @grid)
     end
   end
 
@@ -35,15 +35,15 @@ class Board
 
     @grid[row].each_with_index do |space, column|
       if [0,7].include?(column)
-        @grid[row][column] = Rook.new(color, [row, column])
+        @grid[row][column] = Rook.new(color, [row, column], @grid)
       elsif [1,6].include?(column)
-        @grid[row][column] = Knight.new(color, [row, column])
+        @grid[row][column] = Knight.new(color, [row, column], @grid)
       elsif [2,5].include?(column)
-        @grid[row][column] = Bishop.new(color, [row, column])
+        @grid[row][column] = Bishop.new(color, [row, column], @grid)
       elsif column == 3
-        @grid[row][column] = Queen.new(color, [row, column])
+        @grid[row][column] = Queen.new(color, [row, column], @grid)
       else #column == 4
-        @grid[row][column] = King.new(color, [row, column])
+        @grid[row][column] = King.new(color, [row, column], @grid)
       end
     end
 
@@ -52,15 +52,15 @@ class Board
 
     @grid[row].each_with_index do |space, column|
       if [0,7].include?(column)
-        @grid[row][column] = Rook.new(color, [row, column])
+        @grid[row][column] = Rook.new(color, [row, column], @grid)
       elsif [1,6].include?(column)
-        @grid[row][column] = Knight.new(color, [row, column])
+        @grid[row][column] = Knight.new(color, [row, column], @grid)
       elsif [2,5].include?(column)
-        @grid[row][column] = Bishop.new(color, [row, column])
+        @grid[row][column] = Bishop.new(color, [row, column], @grid)
       elsif column == 3
-        @grid[row][column] = Queen.new(color, [row, column])
+        @grid[row][column] = Queen.new(color, [row, column], @grid)
       else #column == 4
-        @grid[row][column] = King.new(color, [row, column])
+        @grid[row][column] = King.new(color, [row, column], @grid)
       end
     end
 
