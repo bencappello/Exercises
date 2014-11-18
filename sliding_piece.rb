@@ -6,25 +6,43 @@ class SlidingPiece < Piece
     super(color, pos, board)
   end
 
-  def moves
-    move_dirs
-  end
+  # def moves
+  #   possible_move_coords = move_dirs.map do |(dx, dy)|  #coordinate
+  #     [pos[0] + dx, pos[1] + dy]
+  #   end.select do |row, col|
+  #     [row, col].all? do |coord|
+  #       coord.between?(0, 7)
+  #     end
+  #   end
+  #   possible_move_coords.select do |pos|
+  #     @board[pos].nil? || @board[pos].color == other_color(@color) #valid move spaces
+  #   end
+  # end
 
-  def neighbors
-    possible_move_coords = move_dirs.map do |(dx, dy)|
-      [pos[0] + dx, pos[1] + dy]
-    end.select do |row, col|
-      [row, col].all? do |coord|
-        coord.between?(0, 7)
+
+  def moves
+    extended_moves = []
+    move_dirs.each do |(dx, dy)|
+      position =  [@pos[0] + dx, @pos[1] + dy]
+      until !valid_move?(position)
+        extended_moves << position
+        break if other_piece(position)
+        position =  [position[0] + dx, position[1] + dy]
       end
     end
+    extended_moves
+  end
 
-    possible_move_coords.select { |pos| @board[pos] }
-      neighbor_tiles.select { |tile| tile.nil? }
+  def other_piece(position)
+    !@board[position].nil? && @board[position].color == other_color(@color)
   end
 
 
-
-
+  def valid_move?(position)
+    return false unless position[0].between?(0, 7)
+    return false unless position[1].between?(0, 7)
+    return false unless (@board[position].nil? || @board[position].color == other_color(@color))
+    return true
+  end
 
 end
