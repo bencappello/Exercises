@@ -1,9 +1,8 @@
 class Piece
 
-  def initalize(color, pos)
+  def initialize(color, pos)
     @color = color
     @pos = pos
-    @board = board.dup
   end
 
 

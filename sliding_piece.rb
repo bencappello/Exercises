@@ -2,9 +2,11 @@ require_relative 'piece'
 
 class SlidingPiece < Piece
 
-  def moves
-    
+  def initialize(color, pos)
+    super(color, pos)
+  end
 
+  def moves
     move_dirs
   end
 
