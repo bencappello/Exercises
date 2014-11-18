@@ -6,7 +6,7 @@
 
 load "board.rb"
 a = Board.new
-bishop1 = a[[0,2]]
+bishop1 = a[[1,6]]
 bishop1.pos = [4,4]
 bishop1.moves
 
