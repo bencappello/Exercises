@@ -6,20 +6,6 @@ class SlidingPiece < Piece
     super(color, pos, board)
   end
 
-  # def moves
-  #   possible_move_coords = move_dirs.map do |(dx, dy)|  #coordinate
-  #     [pos[0] + dx, pos[1] + dy]
-  #   end.select do |row, col|
-  #     [row, col].all? do |coord|
-  #       coord.between?(0, 7)
-  #     end
-  #   end
-  #   possible_move_coords.select do |pos|
-  #     @board[pos].nil? || @board[pos].color == other_color(@color) #valid move spaces
-  #   end
-  # end
-
-
   def moves
     extended_moves = []
     move_dirs.each do |(dx, dy)|

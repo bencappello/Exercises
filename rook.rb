@@ -1,10 +1,17 @@
 require_relative "sliding_piece"
 
 class Rook < SlidingPiece
-  DELTAS = [[0,1], [1,0], [0,-1], [-1, 0]]
+  attr_reader :render
 
+  DELTAS = [[0,1], [1,0], [0,-1], [-1, 0]]
+  ICONS =
+  {
+    w: "♖",
+    b: "♜"
+  }
   def initialize(color, pos, board)
     super(color, pos, board)
+    @render = ICONS[color]
   end
 
 

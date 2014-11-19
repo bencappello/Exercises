@@ -19,3 +19,21 @@ rook1.moves
 
 
 exit
+
+
+#have begin-rescue-end loop w/ user input
+
+load "board.rb"
+a = Board.new
+a.move([1,7],[3,7])
+a.render
+a.make_move([7,4], [5,6])
+a.render
+a.move([5,6], [4,6])
+
+
+load "board.rb"
+a = Board.new
+a.make_move([7,4],[4,7])
+a.make_move([0,3],[4,6])
+a.make_move([0,0],[4,5])
