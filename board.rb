@@ -1,4 +1,5 @@
 require_relative "pieces_require"
+require_relative "errors"
 
 class Board
 
@@ -125,9 +126,9 @@ class Board
   # end
 
   def move(start, final_pos)
-    raise "There is no piece at that start position" if self[start] == nil
-    raise "You can't move there." unless self[start].moves.include?(final_pos)
-    raise "You cannot put yourself in check" if self[start].move_into_check?(final_pos)
+    raise MoveError.new "There is no piece at that start position" if self[start] == nil
+    raise MoveError.new "You can't move there." unless self[start].moves.include?(final_pos)
+    raise MoveError.new "You cannot put yourself in check" if self[start].move_into_check?(final_pos)
 
     @taken_pieces << self[final_pos] if self[final_pos]
     make_move(start, final_pos)
@@ -161,7 +162,7 @@ class Board
   end
 
   def render
-    print ("A".."H").to_a.join
+    print " " + ("A".."H").to_a.join
     puts ""
     @grid.each_with_index do |row, index|
       print (index + 1)

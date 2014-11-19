@@ -16,19 +16,30 @@ class Game
   end
 
   def play
-
     next_player = @white_player
     other_player = @black_player
 
     until @board.check_mate?(:b) || @board.check_mate?(:w)
       @board.render
-      next_player.play_turn(next_player.color)
+      begin
+        input = next_player.get_input(next_player.color)
+        play_turn(input, next_player.color)
+      rescue MoveError => e
+        puts "#{e.message}"
+        retry
+      end
 
       next_player, other_player = other_player, next_player
     end
-
     win(other_player.color)
+  end
 
+  def play_turn(input, color)
+    start, final = input
+    unless  @board[start].nil? || @board[start].color == color
+      raise MoveError.new "You can't move the other player's pieces. That would be cheating."
+    end
+    @board.move(start, final)
   end
 
   def win(color)
@@ -39,7 +50,7 @@ end
 
 class HumanPlayer
 
-  COLORS = { w: "white", b: "black" }
+  COLORS = { w: "White", b: "Black" }
 
   attr_reader :color
 
@@ -47,20 +58,21 @@ class HumanPlayer
     @color = color
   end
 
-  def play_turn(color)
-    puts "What piece do you want to move #{COLORS[color]}?"
+  def get_input(color)
+    puts "#{COLORS[color]} player's turn"
+    puts "What piece do you want to move?"
     move = gets.chomp.upcase
     start = []
     columns = %w(A B C D E F G H)
 
     move.each_char do |char|
       if ("A".."H").include?(char)
-        start << columns.index("F")
+        start << columns.index(char).to_s
       else
         start << (char.to_i - 1).to_s
       end
     end
-    start = start.split("").map{|num| num.to_i}
+    start = start.map{|num| num.to_i}.reverse
 
     puts "Where do you want to move it?"
     move = gets.chomp.upcase
@@ -69,12 +81,12 @@ class HumanPlayer
 
     move.each_char do |char|
       if ("A".."H").include?(char)
-        final << columns.index("F")
+        final << columns.index(char).to_s
       else
         final << (char.to_i - 1).to_s
       end
     end
-    final = final.split("").map{|num| num.to_i}
+    final = final.map{|num| num.to_i}.reverse
     [start,final]
   end
 
