@@ -1,5 +1,6 @@
 require_relative "pieces_require"
 require_relative "board"
+require_relative "errors"
 
 
 class Game
@@ -59,35 +60,42 @@ class HumanPlayer
   end
 
   def get_input(color)
-    puts "#{COLORS[color]} player's turn"
-    puts "What piece do you want to move?"
-    move = gets.chomp.upcase
-    start = []
-    columns = %w(A B C D E F G H)
+    begin
+      puts "#{COLORS[color]} player's turn"
+      puts "What piece do you want to move?"
+      start = get_move
+    rescue InputError => e
+      puts "#{e.message}"
+      retry
+    end
 
+    begin
+      puts "Where do you want to move it?"
+      final = get_move
+    rescue InputError => e
+      puts "#{e.message}"
+      retry
+    end
+
+    [start, final]
+  end
+
+  def get_move
+    move = gets.chomp.upcase
+    columns = %w(A B C D E F G H)
+    unless columns.include?(move[0])  && ("1".."8").include?(move[1])
+      raise InputError.new "Please input a valid space in the form 'A1'"
+    end
+
+    location = []
     move.each_char do |char|
       if ("A".."H").include?(char)
-        start << columns.index(char).to_s
+        location << columns.index(char).to_s
       else
-        start << (char.to_i - 1).to_s
+        location << (char.to_i - 1).to_s
       end
     end
-    start = start.map{|num| num.to_i}.reverse
-
-    puts "Where do you want to move it?"
-    move = gets.chomp.upcase
-    final = []
-    columns = %w(A B C D E F G H)
-
-    move.each_char do |char|
-      if ("A".."H").include?(char)
-        final << columns.index(char).to_s
-      else
-        final << (char.to_i - 1).to_s
-      end
-    end
-    final = final.map{|num| num.to_i}.reverse
-    [start,final]
+    location = location.map{|num| num.to_i}.reverse
   end
 
 end
