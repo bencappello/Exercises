@@ -19,9 +19,8 @@ class Game
   def play
     next_player = @white_player
     other_player = @black_player
-
+    @board.render
     until @board.check_mate?(:b) || @board.check_mate?(:w)
-      @board.render
       begin
         input = next_player.get_input(next_player.color)
         play_turn(input, next_player.color)
@@ -29,8 +28,8 @@ class Game
         puts "#{e.message}"
         retry
       end
-
       next_player, other_player = other_player, next_player
+      @board.render
     end
     win(other_player.color)
   end
@@ -44,7 +43,7 @@ class Game
   end
 
   def win(color)
-    Puts "Congratulations #{COLORS[color]} player! Check mate."
+    puts "Congratulations #{COLORS[color]} player! Check mate."
   end
 end
 
@@ -98,4 +97,9 @@ class HumanPlayer
     location = location.map{|num| num.to_i}.reverse
   end
 
+end
+
+if $PROGRAM_NAME == __FILE__
+  # running as script
+  Game.new.play
 end
