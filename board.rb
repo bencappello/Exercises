@@ -7,14 +7,7 @@ attr_writer :grid
 
   def initialize
     @grid = Array.new(8) {Array.new(8)}
-  end
-
-  def place_piece(color, pos, rank = :p)
-    if rank == :k
-      self[pos] = KingPiece.new(color, pos, self)
-    else
-      self[pos] = Piece.new(color, pos, self)
-    end
+    starting_positions
   end
 
   def inspect
@@ -54,6 +47,16 @@ attr_writer :grid
       end
     end
   end
+
+  # -----TEST PURPOSES ONLY. TO BE DELETED-------
+  def place_piece(color, pos, rank = :p)
+    if rank == :k
+      self[pos] = KingPiece.new(color, pos, self)
+    else
+      self[pos] = Piece.new(color, pos, self)
+    end
+  end
+  #---------------------------------------------
 
   def render
     print " " + ("0".."7").to_a.join

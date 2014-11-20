@@ -35,9 +35,12 @@ class Piece
     final_pos = [(pos1[0] + delta[0]*multiplier), (pos1[1] + delta[1]*multiplier)]
   end
 
-  def perform_moves!(move_sequence)
+  def perform_moves(move_sequence)
     if move_sequence.length == 1
-      perform_jump(move_sequence) unless perform_slide(move_sequence)
+      move = move_sequence.first
+      unless perform_slide(move) || perform_jump(move)
+          raise InvalidMoveError.new "#{move} is not a valid move"
+      end
     elsif valid_move_seq?(move_sequence)
         move_sequence.each { |move| perform_jump(move) }
     end
@@ -47,8 +50,8 @@ class Piece
     duped_piece = self.class.new(@color, @pos, @board.dup)
 
     #perform_jump also returns true/false depending on if it's a valid jump
-    duped_piece.move_sequence.each do |move|
-      unless perform_jump(move)
+    move_sequence.each do |move|
+      unless duped_piece.perform_jump(move)
         raise InvalidMoveError.new "#{move} is not a valid move"
       end
     end
