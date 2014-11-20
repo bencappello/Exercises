@@ -7,7 +7,6 @@ attr_writer :grid
 
   def initialize
     @grid = Array.new(8) {Array.new(8)}
-    starting_positions
   end
 
   def inspect
@@ -59,10 +58,10 @@ attr_writer :grid
   #---------------------------------------------
 
   def render
-    print " " + ("0".."7").to_a.join
+    print " " + ("A".."H").to_a.join
     puts ""
     @grid.each_with_index do |row, index|
-      print (index)
+      print (index + 1)
       row.each do |square|
         case square
         when NilClass
@@ -71,13 +70,24 @@ attr_writer :grid
           print square.render
         end
       end
+      print (index + 1)
       puts ""
     end
+    puts " " + ("A".."H").to_a.join
+    puts ""
     nil
   end
 
   def pieces
     @grid.flatten.compact
+  end
+
+  def black_pieces
+    pieces.select { |piece| piece.color == :black }
+  end
+
+  def white_pieces
+    pieces.select { |piece| piece.color == :white }
   end
 
 end
