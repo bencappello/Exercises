@@ -3,9 +3,32 @@ require_relative 'require_files'
 class Board
   DIMENSIONS = 8
 
+attr_writer :grid
+
   def initialize
     @grid = Array.new(8) {Array.new(8)}
-    starting_positions
+  end
+
+  def place_piece(color, pos, rank = :p)
+    if rank == :k
+      self[pos] = KingPiece.new(color, pos, self)
+    else
+      self[pos] = Piece.new(color, pos, self)
+    end
+  end
+
+  def inspect
+  end
+
+  def dup
+    duped_board = Board.new
+    duped_board.grid = Array.new(8) {Array.new(8)}
+
+    pieces.each do |piece|
+      duped_board[piece.pos] = piece.dup
+    end
+
+    duped_board
   end
 
   def [](pos)
@@ -33,10 +56,10 @@ class Board
   end
 
   def render
-    print " " + ("A".."H").to_a.join
+    print " " + ("0".."7").to_a.join
     puts ""
     @grid.each_with_index do |row, index|
-      print (index + 1)
+      print (index)
       row.each do |square|
         case square
         when NilClass
@@ -48,6 +71,10 @@ class Board
       puts ""
     end
     nil
+  end
+
+  def pieces
+    @grid.flatten.compact
   end
 
 end
