@@ -1,3 +1,5 @@
+require_relative 'piece'
+
 class Board
   DIMENSIONS = 8
 
@@ -16,17 +18,15 @@ class Board
     @grid[row][column] = piece
   end
 
-
-
   def starting_positions
     DIMENSIONS.times do |row|
       next if [3,4].include?(row)
-      row.each_with_index do |square, column|
+      DIMENSIONS.times do |column|
         (0..3).include?(row) ? color = :black : color = :red
         if row.even?
-          self[[row, column]] = Piece.new(color, [row, column]) if index.odd?
+          self[[row, column]] = Piece.new(color, [row, column]) if column.odd?
         else
-          self[[row, column]] = Piece.new(color, [row, column]) if index.even?
+          self[[row, column]] = Piece.new(color, [row, column]) if column.even?
         end
       end
     end
