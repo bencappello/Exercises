@@ -58,22 +58,26 @@ attr_writer :grid
   #---------------------------------------------
 
   def render
-    print " " + ("A".."H").to_a.join
+    letters = ("A".."H").to_a
+    print " "
+    letters.each { |letter| print " #{letter}" }
     puts ""
     @grid.each_with_index do |row, index|
       print (index + 1)
       row.each do |square|
         case square
         when NilClass
-          print "_"
+          print " -"
         else
-          print square.render
+          print " #{square.render}"
         end
       end
-      print (index + 1)
+      print " #{(index + 1)}"
       puts ""
     end
-    puts " " + ("A".."H").to_a.join
+    print " "
+    letters.each { |letter| print " #{letter}" }
+    puts ""
     puts ""
     nil
   end

@@ -39,7 +39,7 @@ class Piece
     if move_sequence.length == 1
       move = move_sequence.first
       unless perform_slide(move) || perform_jump(move)
-          raise InvalidMoveError.new "#{move} is not a valid move"
+          raise MoveError.new "#{move} is not a valid move"
       end
     elsif valid_move_seq?(move_sequence)
         move_sequence.each { |move| perform_jump(move) }
@@ -52,7 +52,7 @@ class Piece
     #perform_jump also returns true/false depending on if it's a valid jump
     move_sequence.each do |move|
       unless duped_piece.perform_jump(move)
-        raise InvalidMoveError.new "#{move} is not a valid move"
+        raise MoveError.new "#{move} is not a valid move"
       end
     end
 
@@ -129,7 +129,7 @@ class KingPiece < Piece
   end
 
   def render
-    pieces = { black: "♛", white: "♕" }
+    pieces = { black: "♛", white: "♔" }
     pieces[@color]
   end
 

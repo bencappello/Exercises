@@ -23,7 +23,7 @@ a[[2,0]].perform_moves([[1,1]])
 
 
 
-load 'board.rb'
+load 'checkers_game.rb'
 a = Game.new
 a.board.place_piece(:black, [1,1])
 a.board.place_piece(:black, [3,3])
