@@ -1,0 +1,7 @@
+require 'singleton'
+require 'sqlite3'
+require_relative 'user'
+require_relative 'reply'
+require_relative 'question_follower'
+require_relative 'question_like'
+require_relative 'questions'
