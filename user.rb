@@ -72,10 +72,9 @@ class User
   end
 
   def average_karma
-
     results = QuestionsDatabase.instance.execute(<<-SQL, self.id)
     SELECT
-      CAST(nums.like_numAS FLOAT)/nums.question_num
+      CAST(nums.like_num AS FLOAT)/nums.question_num
     FROM
       (
         SELECT
@@ -87,9 +86,29 @@ class User
       WHERE
         questions.author_id = 1
       ) nums
-
     SQL
+  end
 
+  def save
+    if self.id.nil?
+      QuestionsDatabase.instance.execute(<<-SQL, @fname, @lname)
+      INSERT INTO
+        "#{self.class}s"
+      VALUES
+        (?, ?)
+      SQL
+      @id = QuestionsDatabase.instance.last_insert_row_id
+    else
+      QuestionsDatabase.instance.execute(<<-SQL, self.instance_variables*)
+      UPDATE
+        users
+      SET
+        fname = ?, lname = ?
+      WHERE
+        id = ?
+      SQL
+    end
+    nil
   end
 
 
