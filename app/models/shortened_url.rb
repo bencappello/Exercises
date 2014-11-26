@@ -27,7 +27,7 @@ class ShortenedUrl < ActiveRecord::Base
   has_many(
     :visits,
     :class_name => "Visit",
-    :foreign_key => :short_url,
+    :foreign_key => :short_url_id,
     :primary_key => :id
   )
 
