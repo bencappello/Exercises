@@ -28,17 +28,26 @@ class Response < ActiveRecord::Base
 
   private
 
-  def respondent_is_not_author_of_poll
-    if self.author_id == self.question.poll.author_id
-      errors[:base] << "respondent is the author of this... cheater"
-    end
-  end
-
   def respondent_has_not_already_answered_question
 
     #previous_respondents = self.sibling_responses.map(&:respondent)
     if self.sibling_responses.exists?(["responses.author_id = ?", self.author_id])
-      errors[:base] << "respondent has already answered question"
+      errors[:base] << "Respondent has already answered question"
+    end
+  end
+
+  def respondent_is_not_author_of_poll
+    # if self.author_id == self.question.poll.author_id
+    #   errors[:base] << "respondent is the author of this... cheater"
+    # end
+
+    poll_author_id = Poll.joins("questions ON questions.poll_id = polls.id")
+    .joins("answer_choices ON answer_choices.question_id = question.id")
+    .joins("responses ON responses.answer_choice_id = answer_choice.id")
+    .where("")
+
+    if self.author_id == poll_author_id
+      errors[:base] << "Respondent is the author of this poll!!!!!!"
     end
   end
 end
