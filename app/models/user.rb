@@ -22,9 +22,7 @@ class User < ActiveRecord::Base
     :primary_key => :id
   )
 
-  def self.generate_session_token
-    SecureRandom::urlsafe_base64(16)
-  end
+  has_many :sessions
 
   def self.find_by_credentials(user_name, password)
     user = User.find_by(user_name: user_name)
@@ -34,12 +32,6 @@ class User < ActiveRecord::Base
     else
       nil
     end
-  end
-
-  def reset_session_token!
-    self.session_token = self.class.generate_session_token
-    self.save!
-    self.session_token
   end
 
   def password=(password)
@@ -54,6 +46,8 @@ class User < ActiveRecord::Base
   private
 
   def initialize_session_token
-    self.session_token ||= self.class.generate_session_token
+    
+
+    # self.session_token ||= self.class.generate_session_token
   end
 end

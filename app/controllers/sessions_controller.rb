@@ -13,7 +13,14 @@ class SessionsController < ApplicationController
     @user = User.find_by_credentials(user_name, password)
 
     if @user
-      @user.reset_session_token!
+      # @user.reset_session_token!
+
+      #generate token
+      #put it in session[:session_token]
+      #put it in database, along with:
+      #  get his ip
+      #  get his useragent
+      
       login!(@user)
       redirect_to cats_url
     else
