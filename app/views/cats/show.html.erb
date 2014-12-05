@@ -15,7 +15,7 @@
   <% @cat.cat_rental_requests.order(:start_date).each do |req| %>
     <tr>
       <td><%= req.start_date %> ----> <%= req.end_date %></td>
-      <% if req.status == "PENDING" %>
+      <% if req.status == "PENDING" && @cat.owner.id == current_user.id %>
         <td>
         <%= button_to("APPROVE!", req_approve_url(req.id), method: :post) %>
         </td>
@@ -23,6 +23,10 @@
         <%= button_to("DENY!", req_deny_url(req.id), method: :post) %>
         </td>
       <% end %>
+    </tr>
+    <tr>
+      <td>Requester: <%= req.requester.user_name %></td>
+      <td>Status: <%= req.status %></td>
     </tr>
   <% end %>
 </table>

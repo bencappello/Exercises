@@ -1,13 +1,21 @@
 class CatRentalRequest < ActiveRecord::Base
   STATUSES = %w(PENDING APPROVED DENIED)
 
-  validates :cat_id, :start_date, :end_date, :presence => true
+  validates :cat_id, :start_date, :end_date, :user_id, :presence => true
   validates :status, :presence => true, :inclusion => { :in => STATUSES }
+  
   validate :overlapping_approved_requests
 
   after_initialize :set_status
 
   belongs_to :cat
+
+  belongs_to(
+    :requester,
+    :class_name => "User",
+    :foreign_key => :user_id,
+    :primary_key => :id
+  )
 
   def approve!
     self.status = "APPROVED"

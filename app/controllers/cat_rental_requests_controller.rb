@@ -1,4 +1,9 @@
 class CatRentalRequestsController < ApplicationController
+
+  before_action :verify_cat_owner, only: [:approve, :deny]
+  before_action :verify_request_owner, only: [:edit, :update]
+  before_action :verify_logged_in, only: [:create]
+
   def index
     @requests = CatRentalRequest.all
     render :index
@@ -17,6 +22,8 @@ class CatRentalRequestsController < ApplicationController
   def create
     @request = CatRentalRequest.new(request_params)
 
+    @request.user_id = current_user.id
+
     if @request.save
       redirect_to cat_rental_request_url(@request)
     else
@@ -25,13 +32,10 @@ class CatRentalRequestsController < ApplicationController
   end
 
   def edit
-    @request = CatRentalRequest.find(params[:id])
     render :edit
   end
 
   def update
-    @request = CatRentalRequest.find(params[:id])
-
     if @request.update(request_params)
       redirect_to cat_rental_request_url(@request)
     else
@@ -40,13 +44,11 @@ class CatRentalRequestsController < ApplicationController
   end
 
   def approve
-    @request = CatRentalRequest.find(params[:id])
     @request.approve!
     redirect_to cat_url(@request.cat_id)
   end
 
   def deny
-    @request = CatRentalRequest.find(params[:id])
     @request.deny!
     redirect_to cat_url(@request.cat_id)
   end
@@ -58,6 +60,30 @@ private
 
   def request_params
     params.require(:cat_rental_request).permit(:cat_id, :start_date, :end_date, :status)
+  end
+
+  def verify_cat_owner
+    @request = CatRentalRequest.find(params[:id])
+
+    if @request.cat.owner.id != current_user.id
+      # flash some nasty message
+      redirect_to cats_url
+    end
+  end
+
+  def verify_request_owner
+    @request = CatRentalRequest.find(params[:id])
+
+    if @request.user_id != current_user.id
+      redirect_to cats_url
+    end
+  end
+
+  def verify_logged_in
+    if current_user.nil?
+      # flash stuff
+      redirect_to new_session_url
+    end
   end
 
 end

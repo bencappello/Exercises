@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   post 'cat_rental_requests/:id/approve' => 'cat_rental_requests#approve', as: :req_approve
   post 'cat_rental_requests/:id/deny' => 'cat_rental_requests#deny', as: :req_deny
 
+  resource :user, :only => [:new, :create]
+
+  resource :session, :only => [:new, :create, :destroy]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

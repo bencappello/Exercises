@@ -1,4 +1,8 @@
 class CatsController < ApplicationController
+  before_action :verify_cat_owner, only: [:edit, :update]
+
+  before_action :verify_logged_in, only: [:create]
+
   def index
     @cats = Cat.all
     render :index
@@ -16,6 +20,8 @@ class CatsController < ApplicationController
 
   def create
     @cat = Cat.new(cat_params)
+
+    @cat.user_id = current_user.id
 
     if @cat.save
       redirect_to cat_url(@cat)
@@ -42,9 +48,25 @@ class CatsController < ApplicationController
   def destroy
   end
 
-private
+  private
+
   def cat_params
     params.require(:cat).permit(:age, :color, :birth_date, :description, :name, :sex)
+  end
+
+  def verify_cat_owner
+    @cat = Cat.find(params[:id])
+
+    if @cat.owner_id != current_user.id
+      redirect_to cats_url
+    end
+  end
+
+  def verify_logged_in
+    if current_user.nil?
+      # flash stuff
+      redirect_to new_session_url
+    end
   end
 
 end

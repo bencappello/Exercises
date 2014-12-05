@@ -8,6 +8,11 @@
 
   <input type="hidden" name="_method" value="<%= form_method %>">
 
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
   <label for="requested_cat">Name of Cat U Want</label>
   <select name="cat_rental_request[cat_id]" id="requested_cat">
 
@@ -26,9 +31,4 @@
 
   <input type="submit" value="<%= submit_text %>">
 
-  <!--
-  Other uncovered input types:
-  hidden field
-  check box
--->
 </form>

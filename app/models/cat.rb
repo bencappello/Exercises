@@ -1,11 +1,18 @@
 class Cat < ActiveRecord::Base
   COLORS = %w(brown black gray white orange purple pink)
 
-  validates :birth_date, :name, :description, :presence => true
+  validates :birth_date, :name, :description, :user_id, :presence => true
   validates :color, :presence => true, :inclusion => { :in => COLORS }
   validates :sex, :presence => true, :inclusion => { :in => ["M", "F"] }
 
   has_many :cat_rental_requests, :dependent => :destroy
+
+  belongs_to(
+    :owner,
+    class_name: "User",
+    foreign_key: :user_id,
+    primary_key: :id
+  )
 
   def self.COLORS
     COLORS
