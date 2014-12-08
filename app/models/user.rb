@@ -20,9 +20,15 @@ class User < ActiveRecord::Base
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
 
-    if user.is_password?(password)
-      user
+    if user
+      if user.is_password?(password)
+        user
+      else
+        #errors[:base] << "That is not the correct password for the user."
+        nil
+      end
     else
+      #errors[:base] << "There is no user with that email address."
       nil
     end
   end
@@ -34,7 +40,7 @@ class User < ActiveRecord::Base
   def reset_session_token!
     self.session_token = self.class.generate_session_token
     self.save!
-    self.sessin_token
+    self.session_token
   end
 
   private

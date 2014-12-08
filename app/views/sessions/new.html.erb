@@ -1,6 +1,9 @@
-<h1>Sign up!</h1>
+<h1>Log in</h1>
 
-<form action="/users" method="POST">
+<%#= render(
+      json: @user.errors.full_messages, status: :unprocessable_entity
+        ) %>
+<form action="/session" method="POST">
   <%= auth_token %>
   <label for="email">Email</label>
   <input
@@ -17,5 +20,9 @@
     id="user_password"
   >
 
-  <input type="submit" value="Sign up">
+  <input type="submit" value="Log in">
 </form>
+
+<br>
+
+<%= link_to("Sign up", new_users_url) %>
