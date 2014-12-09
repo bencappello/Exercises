@@ -11,7 +11,7 @@ author: <%= link_to comment.author.username, user_url(comment.author_id) %>
 <% end %>
 
 <% unless comment.child_comments.empty? %>
-  <h3>Sub Comments</h3>
+
   <ul>
     <% comment.child_comments.where(parent_comment_id: comment.id).each do |comment| %>
       <li>

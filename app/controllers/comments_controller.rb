@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.author_id = current_user.id
-    @comment.parent_comment_id = params
+    (@comment.parent_comment_id = params[:parent_comment_id])
     if @comment.save
       flash[:notice] = "Comment added successfully"
       redirect_to post_url(@comment.post)
