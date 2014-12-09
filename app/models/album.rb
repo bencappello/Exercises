@@ -3,5 +3,5 @@ class Album < ActiveRecord::Base
   validates :album_type, presence: true, inclusion: { in: ["live", "studio"] }
 
   belongs_to :band
-  has_many :tracks, dependent: :destroy
+  has_many :tracks, inverse_of: :album, dependent: :destroy
 end

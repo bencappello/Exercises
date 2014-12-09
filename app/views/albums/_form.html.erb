@@ -1,0 +1,48 @@
+<h1><%= title %></h1>
+<%= render "shared/errors" %>
+
+<form action="<%= action_url %>" method="POST">
+  <%= auth_token %>
+
+  <input type="hidden" name="_method" value="<%= form_method %>">
+
+  <label for="band_name">Band</label>
+  <select name="album[band_id]" id="band_name">
+    <%  Band.all.each do |band| %>
+    <option
+    value="<%= band.id %>" <%= "selected" if (band_id == band.id) %>>
+    <%= band.name %>
+  </option>
+  <% end %>
+</select>
+
+<br><br>
+
+<label for="album_name">Album name</label>
+<input
+type="text"
+name="album[name]"
+id="album_name"
+value="<%= album.name %>"
+>
+
+<br><br>
+
+<label>Type:  </label>
+<% ["live", "studio"].each do |kind| %>
+<input
+type="radio"
+name="album[album_type]"
+id="<%= kind %>"
+value="<%= kind %>"
+<%= "checked" if album.album_type == kind %>
+>
+<label for= <%= kind %>><%= kind %></label>
+<% end %>
+
+
+<br><br>
+<input type="submit" value=<%= submit_text %>>
+
+
+</form>

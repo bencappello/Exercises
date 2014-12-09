@@ -10,19 +10,31 @@ class UsersController < ApplicationController
     #@user.password = params[:user][:password]
     if @user.save
       login!(@user)
-      redirect_to users_url
+      redirect_to bands_url
     else
+      flash.now[:errors] = @user.errors.full_messages
       render :new
     end
   end
 
   def edit
+    @user = User.find(params[:id])
+    render :edit
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to bands_url
+    else
+      flash.now[:errors] = @user.errors.full_messages
+      render :edit
+    end
   end
 
   def destroy
+    @user = User.new(user_params)
+    @user.destroy
   end
 
 

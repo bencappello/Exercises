@@ -1,10 +1,8 @@
 <h1>Log in</h1>
 
-<%#= render(
-      json: @user.errors.full_messages, status: :unprocessable_entity
-        ) %>
 <form action="/session" method="POST">
   <%= auth_token %>
+  
   <label for="email">Email</label>
   <input
     type="text"

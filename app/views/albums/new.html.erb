@@ -1,0 +1,8 @@
+<%= render partial: "form", locals: {
+  album: @album,
+  band_id: @band_id,
+  title: "Add an album!",
+  action_url: albums_url,
+  form_method: "POST",
+  submit_text: "Add album"
+  } %>

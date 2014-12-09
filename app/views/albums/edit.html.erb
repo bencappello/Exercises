@@ -1,0 +1,8 @@
+<%= render partial: "form", locals: {
+  album: @album,
+  band_id: @band_id,
+  title: "Edit #{@album.name}",
+  action_url: album_url(@album),
+  form_method: "PATCH",
+  submit_text: "Update album"
+  } %>
