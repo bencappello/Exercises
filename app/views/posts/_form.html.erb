@@ -1,0 +1,49 @@
+<%= render 'layouts/errors' %>
+
+<% form_action = post.persisted? ? post_url(post) : posts_url %>
+<% submit_value = post.persisted? ? "Edit post" : "Create post" %>
+
+<form action="<%= form_action %>" method="POST">
+  <%= auth_token %>
+
+  <% if post.persisted? %>
+    <input type="hidden", name="_method" value="PATCH">
+  <% end %>
+
+  <label>
+    Title
+    <input type="text" name="post[title]" value="<%= post.title %>">
+  </label>
+  <br>
+  <br>
+
+  <label>
+    URL
+    <input type="text" name="post[url]" value="<%= post.url %>">
+  </label>
+  <br>
+  <br>
+
+  <label>
+    Content
+    <textarea name="post[content]"><%= post.content %></textarea>
+  </label>
+  <br>
+  <br>
+
+  <p>
+    <label>Subs</label>
+    <input type="hidden" name="sub_ids[]" value="">
+    <% Sub.all.each do |sub| %>
+      <label>
+        <input type="checkbox"
+          name="sub_ids[]"
+          value="<%= sub.id %>"
+          <%= "checked" if sub_ids.include?(sub.id.to_s) %>>
+        <%= sub.title %>
+      </label>
+    <% end %>
+  </p>
+
+  <input type="submit" value="<%= submit_value %>">
+</form>

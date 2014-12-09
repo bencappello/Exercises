@@ -1,0 +1,24 @@
+<%= render 'layouts/errors' %>
+
+<% form_action = sub.persisted? ? sub_url(sub) : subs_url %>
+<% submit_value = sub.persisted? ? "Edit #{sub.title}" : "Create sub" %>
+
+<form action="<%= form_action %>" method="POST">
+  <%= auth_token %>
+
+  <% if sub.persisted? %>
+    <input type="hidden", name="_method" value="PATCH">
+  <% end %>
+
+  <label>
+    Title
+    <input type="text" name="sub[title]" value="<%= sub.title %>">
+  </label>
+
+  <label>
+    Description
+    <textarea name="sub[description]"><%= sub.description %></textarea>
+  </label>
+
+  <input type="submit" value="<%= submit_value %>">
+</form>
