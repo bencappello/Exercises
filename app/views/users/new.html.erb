@@ -1,5 +1,7 @@
 <h1>Sign up!</h1>
 
+<%= render "shared/errors" %>
+
 <form action="/users" method="POST">
   <%= auth_token %>
   <label for="email">Email</label>

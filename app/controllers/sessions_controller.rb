@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
     @user = User.find_by_credentials(email, password)
 
     if @user.nil?
-      flash.now[:errors] = ["Incorrect username and/or password"]
+      @user = User.new(email: email)
+      flash.now[:errors] = @user.errors.full_messages
       render :new
     else
       login!(@user)
