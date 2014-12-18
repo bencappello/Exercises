@@ -16,20 +16,20 @@ body {
 }
 
 section {
-  margin: 40px;
+  margin-bottom: 40px;
 }
 
 ul {
   margin: 50px auto;
   list-style-type: none;
-  width: 840px;
+  width: 640px;
   padding-left: 0;
 }
 
 li {
   float: left;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   background: gray;
   border: 1px solid black;
 }

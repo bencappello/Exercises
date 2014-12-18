@@ -5,16 +5,26 @@
     <title>Snake? SNAKE? SNAAAAAAAKE!</title>
     <link rel="stylesheet" type="text/css" href="./snake.css">
   </head>
-  <body>
-    <script src="./jquery-2.1.1.js"></script>
-    <!-- Whackjobs at GithubPages don't understand symlinks... -->
-    <script src="./snake.js"></script>
-    <script src="./snake-view.js"></script>
 
-    <script>
-      var $el = $('body');
-      var v = new Snakes.View($el);
-      // Write your code here.
-    </script>
+  <body>
+    <top>
+      <h1>Santa's Moment</h1>
+      <h3>Santa puts baby's in his sack. The more babies you
+        collect the bigger santa's sack becomes.
+        <br>
+        Just don't let santa trip over his sack or santa dies.
+        IS THAT WHAT YOU WANT?!?!?!
+      </h3>
+    </top>
+    <game>
+      <script src="./jquery-2.1.1.js"></script>
+      <script src="./snake.js"></script>
+      <script src="./snake-view.js"></script>
+
+      <script>
+        var $el = $('game');
+        var v = new Snakes.View($el);
+      </script>
+    </game>
   </body>
 </html>

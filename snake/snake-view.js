@@ -22,7 +22,7 @@
 
   View.prototype.bindKeyEvent = function() {
     var that = this;
-    this.$el.on("keydown", function(event) {
+    $('body').on("keydown", function(event) {
       that.handleKeyEvent(event);
     });
   }
