@@ -5,6 +5,8 @@ html, body, ul, li {
 
 }
 
+
+
 .group:after {
   content: "";
   display: block;
@@ -13,6 +15,10 @@ html, body, ul, li {
 
 body {
   text-align: center;
+}
+
+h3 {
+  width: 1050px;
 }
 
 section {

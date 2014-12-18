@@ -36,11 +36,11 @@
 
   View.prototype.render = function() {
     var $board = $("<section class='group'></section>");
-    var that = this.board;
+    var view = this;
     var snake = this.board.snake
-    for (var i = 0; i < that.size; i++) {
+    for (var i = 0; i < view.board.size; i++) {
       var $row = $("<ul class='row'></ul>");
-      for (var j = 0; j < that.size; j++) {
+      for (var j = 0; j < view.board.size; j++) {
         var $space = null;
         if ([snake.segments[0]].includesVector([i,j])) {
           $space = $("<li class='head'></li>");
