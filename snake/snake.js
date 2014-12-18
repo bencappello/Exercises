@@ -32,7 +32,6 @@
     var reverse = Snake.DIFFS[this.dir].map(function(a) {
       return a * -1;
     });
-    console.log(reverse);
     if (this.segments.length === 1 || (
         reverse[0] != Snake.DIFFS[dir][0] &&
         reverse[1] != Snake.DIFFS[dir][1])) {
@@ -61,6 +60,7 @@
     this.size = size,
     this.snake = new Snake(size);
     this.resetApple();
+    this.resetApplePic
   }
 
   Board.prototype.step = function() {
@@ -68,7 +68,6 @@
       this.snake.grow = 1;
       this.resetApple();
     }
-    console.log(this.snake.dead());
     if (this.snake.dead()) {
       alert("You lose");
     }
@@ -82,6 +81,11 @@
     var appleX = Math.floor(Math.random() * (this.size - 1));
     var appleY = Math.floor(Math.random() * (this.size - 1));
     this.apple = [appleX, appleY];
-    this.countDown = 20;
+    this.resetApplePic();
+    this.countDown = 30;
+  }
+
+  Board.prototype.resetApplePic = function() {
+    this.applePic = $("<li class='apple-"+Math.floor(Math.random()*3)+"'></li>")
   }
 })();

@@ -9,7 +9,7 @@
     setInterval(this.step.bind(this), 1000/View.FRAMERATE);
   }
 
-  View.FRAMERATE = 5;
+  View.FRAMERATE = 10;
 
   View.prototype.step = function() {
     if (this.board.snake.dead()) {
@@ -42,11 +42,14 @@
       var $row = $("<ul class='row'></ul>");
       for (var j = 0; j < that.size; j++) {
         var $space = null;
-        if (snake.segments.includesVector([i,j])) {
+        if ([snake.segments[0]].includesVector([i,j])) {
+          $space = $("<li class='head'></li>");
+          // "<li class='disc-" + pile[i] + "'></li>"
+        } else if (snake.segments.slice(1).includesVector([i,j])) {
           $space = $("<li class='snake'></li>");
-          console.log("A SNAK");
         } else if (this.board.apple[0] == i && this.board.apple[1] == j) {
-          $space = $("<li class='apple'></li>");
+          $space = this.board.applePic;
+          console.log(this.applePic);
         } else
           $space = $("<li class='space'></li>");
 

@@ -31,9 +31,26 @@ li {
 }
 
 li.snake {
-  background: green;
+  background: red;
+  border: 1px solid white;
 }
 
-li.apple{
-  background: red;
+li.apple-0 {
+  background: gray;
+  content: url(baby.png);
+}
+
+li.apple-1 {
+  background: gray;
+  content: url(baby1.png);
+}
+
+li.apple-2 {
+  background: gray;
+  content: url(baby2.png);
+}
+
+li.head {
+  background: gray;
+  content: url(santa.png);
 }
