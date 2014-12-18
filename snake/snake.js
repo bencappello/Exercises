@@ -20,12 +20,26 @@
     var head = this.segments[0];
     var dir = Snake.DIFFS[this.dir];
     var newPos = [head[0] + dir[0], head[1] + dir[1]];
+    newPos = this.wrap(newPos);
     this.segments.unshift(newPos);
 
     if (this.grow > 0)
       this.grow--
     else
       this.segments.pop();
+  }
+
+  Snake.prototype.wrap = function(pos) {
+    pos[0] = (pos[0] % this.size);
+    pos[1] = (pos[1] % this.size);
+
+    if (pos[0] < 0) {
+      pos[0] = (this.size - 1);
+    }
+    if (pos[1] < 0) {
+      pos[1] = (this.size - 1);
+    }
+    return pos;
   }
 
   Snake.prototype.turn = function(dir) {
@@ -41,9 +55,7 @@
 
   Snake.prototype.dead = function() {
     var head = this.segments[0];
-    return (head[0] < 0 || head[0] >= this.size ||
-        head[1] < 0 || head[1] >= this.size ||
-        this.collidedWith(this.segments.slice(1)));
+    return this.collidedWith(this.segments.slice(1));
   }
 
   Snake.prototype.collidedWith = function(otherObj) {
@@ -65,7 +77,7 @@
 
   Board.prototype.step = function() {
     if (this.snake.collidedWith([this.apple])) {
-      this.snake.grow = 1;
+      this.snake.grow = 2;
       this.resetApple();
     }
     if (this.snake.dead()) {
@@ -80,12 +92,31 @@
   Board.prototype.resetApple = function() {
     var appleX = Math.floor(Math.random() * (this.size - 1));
     var appleY = Math.floor(Math.random() * (this.size - 1));
-    this.apple = [appleX, appleY];
+    this.apple = [appleX, appleY]
+
+    for (var i = 0; i < this.snake.segments.length; i++) {
+
+      if (this.snake.segments.includesVector(this.apple)) {
+        this.resetApple();
+        return;
+      }
+    }
     this.resetApplePic();
     this.countDown = 30;
   }
 
   Board.prototype.resetApplePic = function() {
     this.applePic = $("<li class='apple-"+Math.floor(Math.random()*3)+"'></li>")
+  }
+
+  Array.prototype.includesVector = function(vec) {
+    console.log(this)
+    console.log(vec)
+    for (var i = 0; i < this.length; i++) {
+      var el = this[i];
+      if (el[0] == vec[0] && el[1] == vec[1])
+        return true;
+    }
+    return false;
   }
 })();

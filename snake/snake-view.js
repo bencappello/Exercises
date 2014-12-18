@@ -49,7 +49,6 @@
           $space = $("<li class='snake'></li>");
         } else if (this.board.apple[0] == i && this.board.apple[1] == j) {
           $space = this.board.applePic;
-          console.log(this.applePic);
         } else
           $space = $("<li class='space'></li>");
 
