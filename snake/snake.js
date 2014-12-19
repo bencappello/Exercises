@@ -102,7 +102,7 @@
       }
     }
     this.resetApplePic();
-    this.countDown = 30;
+    this.countDown = 50;
   }
 
   Board.prototype.resetApplePic = function() {
