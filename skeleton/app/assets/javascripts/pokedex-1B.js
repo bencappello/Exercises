@@ -26,9 +26,7 @@ Pokedex.RootView.prototype.renderPokemonDetail = function (pokemon) {
       $detail.append($('<ul>').addClass('toys'));
       this.$pokeDetail.append($detail);
       // build pokemon toys ul
-      pokemon.toys().each(function(toy){
-        this.addToyToList(toy);
-      }.bind(this));
+      this.renderToysList(pokemon.toys());
 
 
     }.bind(this)

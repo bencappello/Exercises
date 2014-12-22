@@ -59,21 +59,21 @@ body {
 	color: white;
 }
 
-.new-pokemon > div {
+.new-pokemon > div, .toy-detail-form > div {
   margin-bottom: 4px;
 }
 
-.new-pokemon label {
+.new-pokemon label, .toy-detail-form label {
   display: inline-block;
   width: 100px;
   text-align: right;
 }
 
-.new-pokemon input {
+.new-pokemon input, .toy-detail-form input {
   display: inline-block;
 }
 
-.new-pokemon, .detail {
+.new-pokemon, .toy-detail-form, .detail {
   padding: 10px;
   border: thick yellow dotted;
 }

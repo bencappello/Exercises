@@ -16,7 +16,21 @@ Pokedex.RootView.prototype.renderToyDetail = function (toy) {
   $div.append("<img src='" + toy.get('image_url') + "' alt='toy picture'>");
   this.$toyDetail.append($div);
 
-  var pokemonSelectBox = "<select class='poke-select' data-pokemon-id='" + toy.escape('pokemon_id') + "' data-toy-id='" + toy.escape('id') + "'>"
+  // price, happiness, image_url
+  var toyForm = "<form class='toy-detail-form' data-toy-id='" + toy.escape("id") + "' data-pokemon-id='" + toy.escape('pokemon_id') + "'>";
+  toyForm += "<input type='hidden' name=toy[id] value='" + toy.escape("id") + "'>";
+  toyForm += '<div><label> Happiness' +
+        "<input type='number' value='" +
+        toy.escape('happiness') +
+        "' name='toy[happiness]'> </label></div><div><label> Price" +
+        "<input type='number' value='" +
+        toy.escape('price') +
+        "' name='toy[price]'></label></div><div><label> Image Url" +
+        "<input type='text' name='toy[image_url]' value='" +
+        toy.escape('image_url') +
+        "'></label></div>";
+
+  var pokemonSelectBox = "<select class='poke-select' name=toy[pokemon_id]>";
 
   this.pokes.forEach( function (poke) {
     pokemonSelectBox += "<option value='" + poke.escape("id") + "'"
@@ -26,7 +40,10 @@ Pokedex.RootView.prototype.renderToyDetail = function (toy) {
     pokemonSelectBox += ">" + poke.escape("name") + "</option>"
   });
 
-  this.$toyDetail.append(pokemonSelectBox)
+  toyForm += pokemonSelectBox;
+  toyForm += "<input type='submit' value='Submit'>"
+
+  this.$toyDetail.append(toyForm);
 };
 
 Pokedex.RootView.prototype.selectToyFromList = function (event) {

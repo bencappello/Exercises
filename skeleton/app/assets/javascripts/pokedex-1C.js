@@ -10,6 +10,7 @@ Pokedex.RootView.prototype.createPokemon = function (attrs, callback) {
 };
 
 Pokedex.RootView.prototype.submitPokemonForm = function (event) {
+  event.preventDefault();
   var formJSON = $(event.target).serializeJSON();
   this.createPokemon(formJSON, this.renderPokemonDetail.bind(this));
 };

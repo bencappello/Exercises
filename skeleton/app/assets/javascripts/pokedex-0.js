@@ -71,7 +71,7 @@ window.Pokedex.RootView = function ($el) {
 
   this.$el.on('click', 'ul.toys li', this.selectToyFromList.bind(this));
   // select box in RenderToyDetail
-  this.$el.on('change', 'select.poke-select', this.reassignToy.bind(this));
+  this.$el.on('submit', 'form.toy-detail-form', this.submitToyForm.bind(this));
 };
 
 $(function() {

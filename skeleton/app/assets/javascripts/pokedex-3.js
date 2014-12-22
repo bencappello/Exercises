@@ -1,23 +1,29 @@
-Pokedex.RootView.prototype.reassignToy = function (event) {
-  var $currentTarget = $(event.currentTarget);
+Pokedex.RootView.prototype.submitToyForm = function (event) {
+  event.preventDefault();
+  var $form = $(event.currentTarget);
+  var formJSON = $form.serializeJSON();
+  var $currentToyId = $form.data("toy-id");
+  var $currentPokeId = $form.data("pokemon-id");
+  var oldPoke = this.pokes.get($currentPokeId);
 
-  var pokemon = this.pokes.get($currentTarget.data("pokemon-id"));
-  var toy = pokemon.toys().get($currentTarget.data("toy-id"));
+  var currentToy = oldPoke.toys().get($currentToyId);
 
-  // Set the Toy's pokemon_id to the new Pokemon.
-  toy.set("pokemon_id", $currentTarget.val());
-  toy.save({}, {
-    success: (function () {
-      pokemon.toys().remove(toy);
-      this.renderToysList(pokemon.toys());
+  // var oldPoke = this.pokes.get($currentTarget.data("pokemon-id"));
+  // var currentToy = oldPoke.toys().get($currentTarget.data("toy-id"));
+  // currentToy.set("pokemon_id", $currentTarget.val());
+  currentToy.save(formJSON, {
+    success: function (model) {
+      oldPoke.toys().remove(currentToy);
+      this.renderToysList(oldPoke.toys());
+      console.log(model);
       this.$toyDetail.empty();
-    }).bind(this)
+    }.bind(this)
   });
-};
+}
 
 Pokedex.RootView.prototype.renderToysList = function (toys) {
   this.$pokeDetail.find(".toys").empty();
-  toys.each((function(toy) {
+  toys.forEach(function (toy) {
     this.addToyToList(toy);
-  }).bind(this));
-};
+  }.bind(this));
+}
