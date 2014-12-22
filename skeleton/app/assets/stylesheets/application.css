@@ -42,13 +42,14 @@ body {
 #pokedex > * {
 	height: 100%;
 	width: 33.33333333333%;
-	border: thin solid blue;
+	border: thin solid red;
   display:  inline-block;
 	overflow: auto;
 }
 
 .poke-list-item, .toy-list-item {
-	border: thin solid red;
+	border-top: thin solid red;
+  border-right: thin solid red;
 	padding: 10px;
 	cursor: pointer;
 }
@@ -99,6 +100,10 @@ body {
   margin-left: 100px;
 }
 
+#pokedex .pokemon-detail, #pokedex .toy-detail {
+  border-left: none;
+}
+
 .toy {
   border: thin solid tomato;
   padding: 4px;
@@ -113,4 +118,26 @@ body {
   float: left;
   max-width: 300px;
   max-height: 200px;
+}
+
+li {
+  list-style: none;
+}
+
+dl dt {
+  font-weight: 900;
+  text-transform: capitalize;
+}
+
+dl dt::after {
+  content: ":";
+}
+
+dl dd {
+  margin-left: 20px;
+}
+
+.toys {
+  border-left: thin solid red;
+  border-bottom: thin solid red;
 }

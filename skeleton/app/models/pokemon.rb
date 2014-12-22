@@ -15,7 +15,8 @@ class Pokemon < ActiveRecord::Base
     "poison",
     "ground",
     "rock",
-    "steel"
+    "steel",
+    "dark"
   ].sort
 
   serialize :moves, Array
