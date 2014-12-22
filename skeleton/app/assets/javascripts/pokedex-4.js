@@ -15,4 +15,5 @@ $(function () {
 
   JST["pokemonForm"] =
     _.template($("#pokemon-form-template").html());
+
 });

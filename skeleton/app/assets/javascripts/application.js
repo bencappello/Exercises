@@ -21,3 +21,4 @@
 //= require pokedex-1C
 //= require pokedex-2
 //= require pokedex-3
+//= require pokedex-4
