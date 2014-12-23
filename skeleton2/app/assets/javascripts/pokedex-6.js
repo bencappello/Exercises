@@ -22,12 +22,13 @@ Pokedex.Router = Backbone.Router.extend({
     this._pokemonIndex = new Pokedex.Views.PokemonIndex();
     this._pokemonIndex.refreshPokemon({cb: callback});
     $("#pokedex .pokemon-list").html(this._pokemonIndex.$el);
+    this.pokemonForm();
   },
 
   toyDetail: function (pokemonId, toyId) {
-    if (this._pokemonDetail) {
+    if (this._pokemonDetail && pokemonId == this._pokemonDetail.model.id) {
       var toy = this._pokemonDetail.model.toys().get(toyId);
-      var toyDetail = new Pokedex.Views.ToyDetail({ model: toy });
+      var toyDetail = new Pokedex.Views.ToyDetail({ model: toy, collection: this._pokemonIndex.collection});
       $("#pokedex .toy-detail").html(toyDetail.render().$el);
     } else {
       this.pokemonDetail(pokemonId, function() {
@@ -37,6 +38,12 @@ Pokedex.Router = Backbone.Router.extend({
   },
 
   pokemonForm: function () {
+    var mod = new Pokedex.Models.Pokemon();
+    var pkForm = new Pokedex.Views.PokemonForm({
+      model: mod,
+      collection: this._pokemonIndex.collection
+    });
+    $("#pokedex .pokemon-form").html(pkForm.render().$el);
   }
 });
 

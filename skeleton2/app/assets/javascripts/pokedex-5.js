@@ -58,22 +58,38 @@ Pokedex.Views.PokemonDetail = Backbone.View.extend({
 
     this.model.toys().each(function(toy) {
       var $toy = JST.toyListItem({toy: toy});
-      this.$el.find('ul.toys').append($toy);
+      this.$('ul.toys').append($toy);
     }.bind(this));
     return this;
   },
 
   selectToyFromList: function (event) {
     var $tar = $(event.target)
-    Backbone.history.navigate('pokemon/'+$tar.data('pokemon-id')+'/toys/'+$tar.data('id'), { trigger: true });
+    Backbone.history.navigate('pokemon/' + $tar.data('pokemon-id') + '/toys/'+$tar.data('id'), { trigger: true });
   }
 });
 
 Pokedex.Views.ToyDetail = Backbone.View.extend({
+  events: {
+    'change select': 'updateToyPoke'
+  },
+
   render: function () {
-    var $details = JST.toyDetail({ toy: this.model, pokes: [] });
+    var $details = JST.toyDetail({ toy: this.model, pokes: this.collection });
     this.$el.html($details);
     return this;
+  },
+
+  updateToyPoke: function() {
+    var $target = $(event.target);
+    var pokemon = this.collection.get($target.data("pokemon-id"));
+    var toy = pokemon.toys().get($target.data("toy-id"));
+    toy.save({pokemon_id: $target.val()}, {
+      success: (function () {
+        pokemon.toys().remove(toy);
+        Backbone.history.navigate('pokemon/'+$target.val()+'/toys/'+$target.data('toy-id'), { trigger: true });
+      }).bind(this)
+    });
   }
 });
 
