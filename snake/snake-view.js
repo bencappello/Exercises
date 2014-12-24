@@ -29,10 +29,10 @@
 
   View.prototype.handleKeyEvent = function(event) {
     key = event.keyCode;
-    keys = {37: "S", 38: "W", 39: "N", 40: "E"}
+    keys = {37: "W", 38: "N", 39: "E", 40: "S"}
     if (keys[key])
       this.board.snake.turn(keys[key]);
-  }
+    }
 
   View.prototype.render = function() {
     var $board = $("<section class='group'></section>");

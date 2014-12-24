@@ -4,30 +4,41 @@
   var Snake = Snakes.Snake = function(size) {
     this.size = size;
     pos = [size/2, size/2];
-    this.dir = "N";
+    this.dirs = ["N"];
     left = [pos[0] - 1, pos[0]];
     this.segments = [pos, left];
   }
 
   Snake.DIFFS = {
-    "N": [0,1],
-    "S": [0,-1],
-    "W": [-1,0],
-    "E": [1,0]
+    "N": [-1,0],
+    "S": [1,0],
+    "W": [0,-1],
+    "E": [0,1]
   }
 
   Snake.prototype.move = function() {
+    console.log(this.dirs)
+    var dir = null
+    //if dirs has only one element, no turn action has been keyed so just
+    //move in that direction. Otherwise shift off the first dir which was
+    //the old dir and then move in the direction of the first dir which is
+    //the turn that keyed.
+    if (this.dirs.length > 1) {
+      this.dirs.shift();
+    }
+    dir = this.dirs[0]
+
+    var moveDelta = Snake.DIFFS[dir];
     var head = this.segments[0];
-    var dir = Snake.DIFFS[this.dir];
-    var newPos = [head[0] + dir[0], head[1] + dir[1]];
+    var newPos = [head[0] + moveDelta[0], head[1] + moveDelta[1]];
     newPos = this.wrap(newPos);
     this.segments.unshift(newPos);
 
     if (this.grow > 0)
       this.grow--
-    else
-      this.segments.pop();
-  }
+      else
+        this.segments.pop();
+      }
 
   Snake.prototype.wrap = function(pos) {
     pos[0] = (pos[0] % this.size);
@@ -43,15 +54,18 @@
   }
 
   Snake.prototype.turn = function(dir) {
-    var reverse = Snake.DIFFS[this.dir].map(function(a) {
+    var lastDir = this.dirs[this.dirs.length  - 1]
+    var reverse = Snake.DIFFS[lastDir].map(function(a) {
       return a * -1;
     });
+
+
     if (this.segments.length === 1 || (
-        reverse[0] != Snake.DIFFS[dir][0] &&
-        reverse[1] != Snake.DIFFS[dir][1])) {
-      this.dir = dir;
+      reverse[0] != Snake.DIFFS[dir][0] &&
+      reverse[1] != Snake.DIFFS[dir][1])) {
+        this.dirs.push(dir);
+      }
     }
-  }
 
   Snake.prototype.dead = function() {
     var head = this.segments[0];
