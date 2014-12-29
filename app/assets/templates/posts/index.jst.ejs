@@ -1,0 +1,9 @@
+<ul class='posts-index'>
+  <% collection.forEach(function(post) { %>
+    <li>
+      <%= post.get('title') %>
+      <button class="delete-post" data-id='<%= post.get('id') %>'>Delete Post</button>
+    </li>
+
+  <% }) %>
+</ul>
