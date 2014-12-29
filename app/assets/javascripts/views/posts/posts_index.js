@@ -12,7 +12,6 @@ Journal.Views.PostsIndex = Backbone.View.extend({
 
   render: function () {
     this.$el.empty();
-    console.log(this.collection.length)
     this.$el.html(this.template({collection: this.collection}));
     return this;
   },

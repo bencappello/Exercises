@@ -1,9 +1,11 @@
 <ul class='posts-index'>
   <% collection.forEach(function(post) { %>
     <li>
-      <%= post.get('title') %>
+      <a href='<%= "#posts/" + post.id %>'><%= post.get('title') %></a>
       <button class="delete-post" data-id='<%= post.get('id') %>'>Delete Post</button>
     </li>
 
   <% }) %>
 </ul>
+
+<a href='#posts/new'>New Post</a>
