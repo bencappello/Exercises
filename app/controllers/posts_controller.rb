@@ -14,7 +14,8 @@ class PostsController < ApplicationController
   end
 
   def show
-
+    @post = Post.find(params[:id])
+    render json: @post
   end
 
   def destroy
@@ -22,7 +23,7 @@ class PostsController < ApplicationController
     if @post.destroy
       render json: @post
     else
-      render json: @post.errors.full_messages, status 422
+      render json: @post.errors.full_messages, status: 422
     end
   end
 

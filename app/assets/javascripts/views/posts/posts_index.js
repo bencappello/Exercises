@@ -17,11 +17,11 @@ Journal.Views.PostsIndex = Backbone.View.extend({
     return this;
   },
 
-  deletePost: function () {
+  deletePost: function (event) {
     var $target = $(event.currentTarget)
     var modelId = $target.data('id');
     var model = this.collection.get(modelId);
-    model.destroy;
+    model.destroy();
   }
 
 });

@@ -4,10 +4,11 @@ window.Journal = {
   Views: {},
   Routers: {},
   initialize: function() {
-    posts = new Journal.Collections.Posts();
-    posts.fetch();
-    var view = new Journal.Views.PostsIndex({collection: posts});
-    $('body').append(view.render().$el);
+    Journal.posts = new Journal.Collections.Posts();
+    Journal.posts.fetch();
+
+    var router = new Journal.Routers.Router({$rootEl: $('.content')});
+    Backbone.history.start();
   }
 };
 
