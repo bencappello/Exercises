@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: 'static_pages#root'
 
-  resources :posts, default: {format: :json}, only: [:index, :show, :create]
+  resources :posts, default: {format: :json}, only: [:index, :show, :create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

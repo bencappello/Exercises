@@ -7,7 +7,7 @@ Journal.Views.PostsIndex = Backbone.View.extend({
   },
 
   initialize: function () {
-    this.listenTo(this.collection, "sync", this.render);
+    this.listenTo(this.collection, "sync add change:title remove reset", this.render);
   },
 
   render: function () {
@@ -18,7 +18,10 @@ Journal.Views.PostsIndex = Backbone.View.extend({
   },
 
   deletePost: function () {
-    
+    var $target = $(event.currentTarget)
+    var modelId = $target.data('id');
+    var model = this.collection.get(modelId);
+    model.destroy;
   }
 
 });
