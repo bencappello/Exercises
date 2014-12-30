@@ -1,0 +1,6 @@
+<h2>Feeds</h2>
+  <ul class="feeds">
+    <% feeds.forEach(function (feed) { %>
+      <li data-id="<%= feed.id %>"><a href="#/feeds/<%= feed.id %>"><%= feed.get("title") %></a></li>
+    <% }) %>
+  </ul>
