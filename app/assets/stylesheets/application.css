@@ -14,7 +14,114 @@
  *= require_self
  */
 
+ * {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   font: inherit;
+   color: inherit;
+   background: transparent;
+   text-align: inherit;
+   text-decoration: inherit;
+   list-style: none;
+ }
 
+ .header {
+   width: 1004px;
+   display: block;
+   background: blue;
+   border: 1px solid black;
+   text-align: left;
+   font-size: 40px;
+ }
+
+ .header-text {
+   padding:10px;
+   margin-left: 60px;
+   color: white;
+   text-shadow: 2px 0 0 black
+ }
+
+ .main {
+   width: 1004px;
+
+   display: block;
+   border: 1px solid black;
+   background: pink
+ }
 
  .sidebar {
+   padding: 30px;
+   max-width: 300px;
+   height: 100%;
+
+ }
+
+ .content {
+   padding: 30px;
+   width: 200px;
+   height: 100%;
+
+ }
+
+ .sidebar-container {
+   float: left;
+   width: 300px;
+   background: yellow;
+   border: 1px solid black;
+   height: 100%;
+
+ }
+
+
+ .content-container {
+   float: left;
+   width: 700px;
+   background: red;
+   border: 1px solid black;
+
+ }
+
+ .main:after {
+   content: '';
+   clear:both;
+   display:block;
+ }
+
+ .sidebar-container:after {
+   content: '';
+   clear:both;
+   display:block;
+ }
+
+ .content-container:after {
+   content: '';
+   clear:both;
+   display:block;
+ }
+
+ a {
+
+ }
+
+ a:hover {
+   color: white;
+   background: blue;
+ }
+
+ button {
+   padding: 3px;
+   color: #000099;
+   background: #697;
+   border: 2px solid #000099;
+   border-radius: 5px;
+ }
+
+ button:hover {
+   color: white;
+   background: pink;
+ }
+
+ li {
+   padding: 3px;
  }
