@@ -14,7 +14,7 @@ NewsReader.Collections.Feeds = Backbone.Collection.extend({
         }.bind(this)
       });
     }
-    
+
     return object;
   }
 });

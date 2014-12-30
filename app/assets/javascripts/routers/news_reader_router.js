@@ -1,7 +1,6 @@
 NewsReader.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
-    this.$sidebar = options.$sidebar;
   },
 
   routes: {
@@ -11,7 +10,7 @@ NewsReader.Routers.Router = Backbone.Router.extend({
 
 
   feedsIndex: function () {
-  
+
   },
 
   feedShow: function (id) {
