@@ -26,10 +26,8 @@ NewsReader.Views.FeedNew = Backbone.View.extend({
 
       error: function (model, response) {
         var $ul = $('ul.errors');
-
-        response.responseJSON.forEach(function (error) {
-          var $li = $("<li>").append(error);
-        })
+        var $li = $("<li></li>").html(response.responseJSON.error);
+        $ul.append($li)
       }
     });
   }
