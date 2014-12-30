@@ -12,8 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.serializejson
+//
 //= require underscore
 //= require backbone
+//
 //= require news_reader
 //
 //= require_tree ../templates

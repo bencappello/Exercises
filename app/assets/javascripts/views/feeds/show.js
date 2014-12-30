@@ -23,8 +23,7 @@ NewsReader.Views.FeedShow = Backbone.View.extend ({
     return this;
   },
 
-  refreshFeed: function (event) {
-
+  refreshFeed: function () {
     Backbone.history.navigate('#/feeds/' + this.model.id, { trigger: true });
   }
 })

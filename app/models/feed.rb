@@ -15,6 +15,8 @@ class Feed < ActiveRecord::Base
       end
     rescue SimpleRSSError
       return nil
+    rescue
+      return nil
     end
 
     feed

@@ -10,7 +10,10 @@ window.NewsReader = {
     var view = new NewsReader.Views.FeedsIndex({
       collection: NewsReader.feeds
     });
-    $('#sidebar').html(view.render().$el);
+
+    var newForm = new NewsReader.Views.FeedNew();
+
+    $('#sidebar').html(view.render().$el).append(newForm.render().$el);
 
     var router = new NewsReader.Routers.Router({
       $rootEl: $('#content')
