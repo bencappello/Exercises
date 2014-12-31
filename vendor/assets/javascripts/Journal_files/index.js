@@ -1,0 +1,2 @@
+(function() { this.JST || (this.JST = {}); this.JST["posts/index"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<ul class=\'posts-index\'>\n  ');  collection.forEach(function(post) { ; __p.push('\n    <li>\n      ',  post.get('title') ,'\n      <button class="delete-post" data-id=\'',  post.get('id') ,'\'>Delete Post</button>\n    </li>\n\n  ');  }) ; __p.push('\n</ul>\n');}return __p.join('');};
+}).call(this);

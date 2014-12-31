@@ -1,0 +1,16 @@
+<h2>Make a post</h2>
+
+<form>
+  <ul class="errors">
+  </ul>
+
+  <%= JST['posts/_title']({model: model}) %>
+
+  <br><br>
+
+  <%= JST['posts/_body']({model: model}) %>
+
+  <br><br>
+
+  <button>Add Post</button>
+</form>

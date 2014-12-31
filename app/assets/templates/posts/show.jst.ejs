@@ -1,0 +1,21 @@
+<main>
+  <ul class="errors">
+  </ul>
+
+  <% if (edit == 'title') { %>
+    <%= JST['posts/_title']({model: model}) %>
+  <% } else { %>
+    <div data-attribute='title'>Title: <%= model.get('title') %></div>
+  <% } %>
+
+
+  <% if (edit == 'body') { %>
+    <%= JST['posts/_body']({model: model}) %>
+  <% } else { %>
+    <div data-attribute='body'>Body: <%= model.get('body') %></div>
+  <% } %>
+
+
+  <br><br>
+  <a href='#'>All Posts</a>
+</main>

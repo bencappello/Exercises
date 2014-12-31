@@ -1,0 +1,2 @@
+(function() { this.JST || (this.JST = {}); this.JST["posts/form"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<h2>Make a post</h2>\n\n<form>\n  <label>Title\n    <input\n      type="text"\n      name="post[title]">\n    </input>\n  </label>\n\n  <br><br>\n\n  <label>Body\n    <input\n      type="text"\n      name="post[body]">\n    </input>\n  </label>\n\n  <br><br>\n\n  <button>Add Post</button>\n</form>\n');}return __p.join('');};
+}).call(this);
