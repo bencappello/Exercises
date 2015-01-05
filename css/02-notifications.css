@@ -1,5 +1,10 @@
 /* PHASE 2: Notifications */
 
+header {
+  z-index: 1;
+  position: relative;
+}
+
 nav span {
   display: inline;
   background: black;

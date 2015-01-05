@@ -1,1 +1,62 @@
 /* PHASE 9: Forms */
+.meat {
+  padding: 20px;
+}
+
+.input {
+  display: block;
+  width: 90%;
+
+}
+
+label.input {
+  font-size: 16px;
+  font-weight: 700;
+  color: black;
+  padding: 20px 0px 5px 20px;
+}
+
+input.input, textarea.input {
+  background: white;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+input.input:focus, textarea.input:focus {
+    border: 1px solid #0a0;
+    outline: none;
+}
+
+textarea.input {
+  margin-bottom: 10px;
+}
+
+form {
+  float: left;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: block;
+  width: 538px;
+}
+
+div.submit {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+div.submit button {
+  background: #0c0;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 #0a0;
+  color: white;
+  position: relative;
+}
+
+div.submit button:active {
+  top: 3px;
+  box-shadow: none;
+}
