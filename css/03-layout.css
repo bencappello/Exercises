@@ -6,19 +6,20 @@ main.content {
   margin: auto;
   border: 1px solid #ccc;
 }
-main section.meat:before {
+.meat:before {
+  content: "";
   display: block;
   position: absolute;
   width: 1px;
   top: 0;
   bottom: 0;
-  left: 100px;
+  left: 0px;
   background: #ccc;
 }
 
 main section.sidebar {
   float: left;
-  border-right: 1px solid #ccc;
+  /*border-right: 1px solid #ccc;*/
   width: 240px;
   min-height: 240px;
 }
@@ -26,4 +27,5 @@ main section.sidebar {
 main section.meat {
   float: left;
   min-height: 240px;
+  position: relative;
 }
