@@ -1,0 +1,5 @@
+require 'user.rb'
+require 'poll.rb'
+require 'question.rb'
+require 'answer_choice.rb'
+require 'response.rb'
