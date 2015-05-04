@@ -1,0 +1,37 @@
+<h1><%= @post.title %></h1>
+<p>author: <%= link_to @post.author.username, user_url(@post.author_id) %>
+
+<% unless @post.url.blank? %>
+  <h3>URL</h3>
+  <%= @post.url %>
+<% end %>
+
+<% unless @post.content.blank? %>
+  <h3>Content</h3>
+  <p>
+    <%= @post.content %>
+  </p>
+<% end %>
+
+<h4>Subs</h4>
+<ul>
+  <% @post.subs.each do |sub| %>
+    <li><%= link_to sub.title, sub_url(sub) %></li>
+  <% end %>
+</ul>
+
+<% if current_user == @post.author %>
+  <%= link_to "Edit post", edit_post_url(@post) %>
+  <%= button_to "Remove post", post_url(@post), method: :delete %>
+<% end %>
+
+<h3>Comments</h3>
+<ul>
+  <% @post.comments.where(parent_comment_id: nil).each do |comment| %>
+    <li>
+      <%= render 'layouts/comment', comment: comment %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Add comment", new_post_comment_url(@post) %>

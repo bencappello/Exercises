@@ -1,0 +1,27 @@
+<p>
+  <%= comment.content %>
+</p>
+author: <%= link_to comment.author.username, user_url(comment.author_id) %>
+
+<% if current_user == comment.author %>
+  <p>
+    <%= link_to "Edit comment", edit_comment_url(comment) %>
+    <%= button_to "Remove comment", comment_url(comment), method: :delete %>
+  </p>
+<% end %>
+
+<% unless comment.child_comments.empty? %>
+
+  <ul>
+    <% comment.child_comments.where(parent_comment_id: comment.id).each do |comment| %>
+      <li>
+        <%= render 'layouts/comment', comment: comment %>
+        <% if current_user == comment.author %>
+          <%= button_to "remove comment", comment_url(comment), method: :delete %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to "Add child comment", new_post_comment_url(comment.post, parent_comment_id: comment.id) %>
