@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SickChat</title>
+    <script src="javascripts/jquery.js"></script>
+    <!-- // <script src="javascripts/underscore.js"></script> -->
+    <script src="javascripts/socket.io.js"></script>
+    <script src="javascripts/chat.js"></script>
+    <script src="javascripts/chat_ui.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      var socket = io();
+      $(function () {
+        var chat = new App.Chat(socket);
+        var chatUI = new App.ChatUI(chat);
+      });
+    </script>
+  </head>
+
+  <body>
+    <h1>Welcome to SickChat, where the sickest people converse.</h1>
+    <br>
+    <h4>SickChat</h4>
+    <br>
+    <form id="chat-input">
+      <textarea id='text' rows="3" cols="40"></textarea>
+      <button name="submit">Send</button>
+    </form>
+
+    <section id='messages'></section>
+
+    <script>
+      $(function () {
+        socket = io();
+
+        socket.on("message", function (data) {
+          $("body").append(data.text);
+        });
+
+        // $("button").on("click", function () {
+        //   socket.emit("poke", { name: nickname });
+        // });
+        //
+        // socket.on("poked", function (data) {
+        //   $("ul").prepend("<li>" + data.name + " poked you!</li>");
+        // });
+      });
+    </script>
+  </body>
+</html>
