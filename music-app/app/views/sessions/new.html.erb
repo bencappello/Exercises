@@ -1,0 +1,27 @@
+<h1>Log in</h1>
+<%= render "shared/errors" %>
+
+<form action="/session" method="POST">
+  <%= auth_token %>
+
+  <label for="email">Email</label>
+  <input
+    type="text"
+    name="user[email]"
+    id="email"
+    value="<%= @user.email %>"
+  >
+
+  <label for="user_password">Password</label>
+  <input
+    type="password"
+    name="user[password]"
+    id="user_password"
+  >
+
+  <input type="submit" value="Log in">
+</form>
+
+<br>
+
+<%= link_to("Sign up", new_users_url) %>

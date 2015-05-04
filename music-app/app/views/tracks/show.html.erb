@@ -1,0 +1,12 @@
+<% album = @track.album %>
+
+<h1><%= @track.name %></h1>
+
+<br>
+
+
+<ul>
+  <li><%= link_to("Edit Track", edit_track_url(@track)) %></li>
+  <li><%= link_to("Delete Track", tracks_url(@track), method: :delete, class: 'btn') %></li>
+  <li><%= link_to(@track.album.name, album_url(@track.album)) %></li>
+</ul>
