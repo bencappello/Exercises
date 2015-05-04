@@ -1,0 +1,67 @@
+html, body, ul, li {
+  margin: 0;
+  border: 0;
+  padding: 0;
+
+}
+
+
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+body {
+  text-align: center;
+}
+
+h3 {
+  width: 1070px;
+  margin: auto;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+ul {
+  margin: 50px auto;
+  list-style-type: none;
+  width: 640px;
+  padding-left: 0;
+}
+
+li {
+  float: left;
+  width: 30px;
+  height: 30px;
+  background: gray;
+  border: 1px solid black;
+}
+
+li.snake {
+  background: red;
+  border: 1px solid white;
+}
+
+li.apple-0 {
+  background: gray;
+  content: url(baby.png);
+}
+
+li.apple-1 {
+  background: gray;
+  content: url(baby1.png);
+}
+
+li.apple-2 {
+  background: gray;
+  content: url(baby2.png);
+}
+
+li.head {
+  background: gray;
+  content: url(santa.png);
+}

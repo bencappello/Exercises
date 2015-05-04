@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Santa's Revenge</title>
+    <link rel="stylesheet" type="text/css" href="./snake.css">
+  </head>
+
+  <body>
+    <top>
+      <h1>Santa's Payback</h1>
+      <h3>This year Santa will be sleighing around to kids' houses as usual. But he ain't
+        dropping off this time. He's collecting.
+        The more babies you collect the bigger santa's sack becomes.
+        Just don't let santa trip over his sack or santa dies.
+        IS THAT WHAT YOU WANT?!?!?!
+      </h3>
+    </top>
+    <game>
+      <script src="./jquery-2.1.1.js"></script>
+      <script src="./snake.js"></script>
+      <script src="./snake-view.js"></script>
+
+      <script>
+        var $el = $('game');
+        var v = new Snakes.View($el);
+      </script>
+    </game>
+  </body>
+</html>

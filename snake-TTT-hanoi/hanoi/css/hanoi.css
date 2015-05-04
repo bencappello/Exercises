@@ -1,0 +1,62 @@
+html, body, ul, li, section {
+  margin: 0;
+  border: 0;
+  padding: 0;
+
+}
+
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+body {
+  text-align: center;
+}
+
+section {
+  list-style-type: none;
+  border: 5px solid black;
+  width: 390px;
+  margin: 50px auto;
+}
+
+ul.pile {
+  border: 5px solid black;
+  list-style-type: none;
+  float: left;
+  padding: 10px;
+  width: 100px;
+  height: 100px;
+  background: red;
+  cursor: pointer;
+
+}
+
+li {
+  float: left;
+  height: 30px;
+  width: 60px;
+  background: transparent;
+}
+
+li.disc-1{
+  border: 1px solid black;
+  width: 50px;
+  margin-left: 25px;
+  background: grey;
+}
+
+li.disc-2{
+  border: 1px solid black;
+  width: 75px;
+  margin-left: 12.5px;
+  background: grey;
+}
+
+li.disc-3{
+  border: 1px solid black;
+  width: 100px;
+  background: grey;
+}
